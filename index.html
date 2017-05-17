@@ -1,0 +1,147 @@
+﻿<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="css/card.css" >
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+  <script type="text/javascript" 
+        src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+    <script type='text/javascript' 
+    src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+
+<style>
+    @charset "US-ASCII";
+    @import "https://fonts.googleapis.com/css?family=Lato:300,400,700";
+</style>
+
+
+<script src="js/pagosConOpenPay.js"></script>
+<script src="js/formDatosPagoEnTienda.js"></script>
+
+<script>
+    var op = new openPayObj('mxnx5ol3qwf9q9y82pp3', 'pk_c5f8f3b1ab9b4ecba817832826736417', 'payment-form', 'pay-button', 'token_id');
+</script>
+
+
+</head>
+<body>
+    <!--Pagos con tarjeta-->
+
+    <div style="position:relative; overflow:auto;">
+        <!--Nota1: Sistema antifraude 'deviceIdHiddenFieldName' recibiras en tu implementación de php un post $_POST['deviceIdHiddenFieldName'] el cual contiene un identificador de sesión único para este form insertado por la libreria de OpenPay -->
+        <!--Nota2: Los input del form con atributos de nombre 'data-openpay-card' son de caracter obligatorio ya que es lo que le permite a la libreria de openpay encontrar la información relevante para la transacción dentro del form -->
+    <div class="bkng-tb-cntnt">
+        <div class="pymnts">
+            <form action="php/pagarConTarjeta.php" method="POST" id="payment-form">
+                <input type="hidden" name="token_id" id="token_id">
+                <div class="pymnt-itm card active">
+                    <h2>Tarjeta de crédito o débito</h2>
+                    <div class="pymnt-cntnt">
+                        <div class="card-expl">
+                            <div class="credit"><h4>Tarjetas de crédito</h4></div>
+                            <div class="debit"><h4>Tarjetas de débito</h4></div>
+                        </div>
+                        <div class="sctn-row">
+                            <div class="sctn-col l">
+                                <!-- Es muy importante que los campos en donde se va a introducir la información de la tarjeta tenga el atributo data_openpay_card ​ya que esto permitirá a la librería de Openpay encontrar la información. -->
+                                <label>Nombre del titular</label><input type="text" placeholder="Como aparece en la tarjeta" autocomplete="off" name="nombre" data-openpay-card="holder_name">
+                            </div>
+                        </div>
+                        <div class="sctn-row">
+                            <div class="sctn-col l">
+                                <label>Correo Electrónico</label><input type="text" placeholder="Para correo de confirmación..." autocomplete="off" name="email">
+                            </div>
+                            <div class="sctn-col 1">
+                                <label>Celular</label><input type="text" autocomplete="off" name="phone">
+                            </div>
+                        </div>
+                        <div class="sctn-row">
+                            <div class="sctn-col l">
+                                <label>Monto</label><input type="text" placeholder="Monto a pagar..." autocomplete="off" name="ammount">
+                            </div>
+                            <div class="sctn-col 1">
+                                <!-- Es muy importante que los campos en donde se va a introducir la información de la tarjeta tenga el atributo data_openpay_card ​ya que esto permitirá a la librería de Openpay encontrar la información. -->
+                                <label>Número de tarjeta</label><input type="text" autocomplete="off" data-openpay-card="card_number">
+                            </div>
+                        </div>
+                            <div class="sctn-row">
+                                <div class="sctn-col l">
+                                    <label>Fecha de expiración</label>
+                                    <!-- Es muy importante que los campos en donde se va a introducir la información de la tarjeta tenga el atributo data_openpay_card ​ya que esto permitirá a la librería de Openpay encontrar la información. -->
+                                    <div class="sctn-col half l"><input type="text" placeholder="Mes" data-openpay-card="expiration_month"></div>
+                                    <!-- Es muy importante que los campos en donde se va a introducir la información de la tarjeta tenga el atributo data_openpay_card ​ya que esto permitirá a la librería de Openpay encontrar la información. -->
+                                    <div class="sctn-col half l"><input type="text" placeholder="Año" data-openpay-card="expiration_year"></div>
+                                </div>
+                                <div class="sctn-col cvv"><label>Código de seguridad</label>
+                                <!-- Es muy importante que los campos en donde se va a introducir la información de la tarjeta tenga el atributo data_openpay_card ​ya que esto permitirá a la librería de Openpay encontrar la información. -->
+                                    <div class="sctn-col half l"><input type="text" placeholder="3 dígitos" autocomplete="off" data-openpay-card="cvv2"></div>
+                                </div>
+                            </div>
+                            <div class="openpay"><div class="logo">Transacciones realizadas vía:</div>
+                            <div class="shield">Tus pagos se realizan de forma segura con encriptación de 256 bits</div>
+                            
+                        </div>
+                        <div class="sctn-row">
+                                <a class="button rght" id="pay-button">Pagar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!--Pagos con tarjeta-->
+
+
+
+    <!-- Pago con Tiendas de Conveniencia -->
+
+
+    <div class="container" style="margin-top:100px; margin-bottom:100px;">
+            <div class="row">
+            <div class="col-xs-12" style="text-align:center;">
+                    <h1>Pago en tiendas de conveniencia</h1>
+                    <form action="php/pagarConTienda.php" method="POST" id="pagarConTiendaForm" class="form-control">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Monto</label>
+                                <input class="form-control" name="monto" id="montoPagarConTienda" >
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Nombre</label>
+                                <input class="form-control" name="nombreCliente" id="nombreClientePagarConTienda" >
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Apellidos</label>
+                                <input class="form-control" name="apellidosCliente" id="apellidosClientePagarConTienda">
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Correo electrónico</label>
+                                <input class="form-control" name="email" id="emailPagarConTienda">
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Confirmación del correo electrónico</label>
+                                <input class="form-control" name="confirm-email" id="confirmEmailPagarConTienda">
+                            </div>
+                        </div>  
+                        <button id="pagarTienda" type="submit" class="btn btn-default btn-success">Pagar en Tienda</button>
+                    </form>
+
+                </div>
+        </div>
+        
+    </div>
+    <!-- Pago con Tiendas de Conveniencia -->
+    
+</body>
+</html>
