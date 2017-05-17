@@ -3,7 +3,7 @@
 include_once("pagosConOpenPay.php");
 
 
-$op = new openPayObj("mxnx5ol3qwf9q9y82pp3","sk_97e806e48550464cabbca7bd77255788");
+$op = new openPayObj("","");
 
 $monto = $_POST["monto"];
 $nombreCliente = $_POST["nombreCliente"];
