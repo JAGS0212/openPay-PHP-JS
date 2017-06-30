@@ -22,7 +22,6 @@ $(document).ready(function () {
             pagarTiendaBtn.prop("disabled", false);
             return;
         }
-
         $('#pagarConTiendaForm').submit();
     });
 

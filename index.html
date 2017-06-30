@@ -21,7 +21,7 @@
 <script src="js/formDatosPagoEnTienda.js"></script>
 
 <script>
-    var op = new openPayObj('', '', 'payment-form', 'pay-button', 'token_id');
+    var op = new openPayObj('', '', 'payment-form', 'pay-button', 'token_id', 'pay-loading');
     //idMercader,idPublico,id del form de pago, id del boton de pago, id del input donde se insertará el token id
 </script>
 
@@ -85,6 +85,7 @@
                             
                         </div>
                         <div class="sctn-row">
+                                <div class="openpay-loading" style="background-image:url('gif/loading.gif');" id="pay-loading"></div>
                                 <a class="button rght" id="pay-button">Pagar</a>
                         </div>
                     </div>
@@ -98,8 +99,6 @@
 
 
     <!-- Pago con Tiendas de Conveniencia -->
-
-
     <div class="container" style="margin-top:100px; margin-bottom:100px;">
             <div class="row">
             <div class="col-xs-12" style="text-align:center;">

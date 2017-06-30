@@ -1,5 +1,5 @@
 ﻿// JavaScript source code
-var openPayObj = function (idMercader, idPublico, domIdFormDePago, domIdBotonDePago, domIdTokenId) {
+var openPayObj = function (idMercader, idPublico, domIdFormDePago, domIdBotonDePago, domIdTokenId,domIdLoadingGif) {
     this.idMercader = idMercader; //id de mercador proporcionado por openpay al crear tu cuenta
     this.idPublico = idPublico; //id de mercador proporcionado por openpay al crear tu cuenta. Nota: Es diferente al id proporcionado en pagosConOpenPay.php
     this.idDomFormDePago = domIdFormDePago; //identificador de html tag del form de pago
@@ -7,6 +7,7 @@ var openPayObj = function (idMercader, idPublico, domIdFormDePago, domIdBotonDeP
     this.domFormDePago = null; 
     this.domBotonDePago = null;
     this.domTokenId = domIdTokenId; //identificador de html tag del token id. Nota: Suele ser un <input hidden />
+    this.domLoadingGif = domIdLoadingGif;
     var me = this;
 
     $(document).ready(function () {
@@ -18,12 +19,15 @@ var openPayObj = function (idMercader, idPublico, domIdFormDePago, domIdBotonDeP
         me.domFormDePago = $("#" + me.idDomFormDePago);
         me.domBotonDePago = $("#" + me.idDomBotonDePago);
         me.domTokenId = $("#" + me.domTokenId);
+        me.domLoadingGif = $("#" + me.domLoadingGif);
 
         var deviceSessionId = OpenPay.deviceData.setup(me.idDomFormDePago, "deviceIdHiddenFieldName");
 
         me.domBotonDePago.on('click', function (event) {
             event.preventDefault();
             me.domBotonDePago.prop("disabled", true);
+            me.domBotonDePago.css('display', 'none');
+            me.domLoadingGif.css('display', 'block');
             OpenPay.token.extractFormAndCreate(me.idDomFormDePago, sucess_callbak, error_callbak);
         });
 

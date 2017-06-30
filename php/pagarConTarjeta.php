@@ -3,11 +3,9 @@
     include_once("mailer.php");
 
     $op = new openPayObj("",""); //idMercader,idPrivado
-   
+
     $senderMail = ""; //My email
     $senderPass = ""; //My Pass;
-
-
     /*
      *
      * $_POST['token_id']

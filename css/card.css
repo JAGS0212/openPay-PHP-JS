@@ -252,3 +252,20 @@ a.button.disabled {
     font-weight: 400;
     margin: 0;
 }
+
+.openpay-loading{
+    width:60px;
+    height:60px;
+    display:none;
+    background-attachment:scroll;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 150px;
+    margin-top: 35px;
+}

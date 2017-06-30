@@ -2,10 +2,10 @@
 include_once("pagosConOpenPay.php");
 include_once("mailer.php");
 
-$op = new openPayObj("",""); //idMercader, idPrivado
+$op = new openPayObj("",""); //idMercader,idPrivado
+
 $senderMail = ""; //My email
 $senderPass = ""; //My Pass;
-
 
 $monto = $_POST["monto"];
 $nombreCliente = $_POST["nombreCliente"];
@@ -21,7 +21,6 @@ if($res["status"] < 0){
     return;
 }
 else{
-
     $bodyHtml = '<h1>Felicidades! Hemos procesado tu compra.</h1><bold>Para liquidar tu compra haz click <a href="'.$res["receipt"].'">aqui</a> y descargar tu forma y realiza el pago en cualquiera de nuestras tiendas afiliadas. </bold>';
     $body = 'Felicidades! Hemos procesado tu compra. Para liquidar tu compra haz copia y pega esta liga '.$res["receipt"].', descargar tú forma y realiza el pago en cualquiera de nuestras tiendas afiliadas.'; //Porque dos veces? y Porque sin html? Este mensaje es un respaldo en caso de que el correo del receptor no soporte la recepción de correos estructurados con HTML
     $receiverMail = $_POST["email"];
